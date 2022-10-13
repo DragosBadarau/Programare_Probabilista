@@ -56,10 +56,10 @@ def depozit():
     }
     df = pd.DataFrame(dictionary)
     # Ex.2
-    p_cutremur = df[(df['cutremur'] == 1)].shape[0] & df[(df['fireAlarm'] == 1)].shape[0] / \
-                     df[(df['fireAlarm'] == 1)].shape[0]
+    p_cutremur = df[(df['Cutremur'] == 1)].shape[0] & df[(df['Alarma'] == 1)].shape[0] / \
+                     df[(df['Alarma'] == 1)].shape[0]
     # Ex.3
-    p_incendiu = df[(df['incendiu'] == 1)].shape[0] & df[(df['fireAlarm'] == 0)].shape[0] / \
-                     df[(df['incendiu'] == 1)].shape[0]
+    p_incendiu = df[(df['Incendiu'] == 1)].shape[0] & df[(df['Alarma'] == 0)].shape[0] / \
+                     df[(df['Alarma'] == 0)].shape[0]
 
 
