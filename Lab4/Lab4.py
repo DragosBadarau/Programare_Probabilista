@@ -17,18 +17,23 @@ def FastFoodProbability(alfa):
 
     model = pm.Model()
     with model:
-        trafic = np.random.poisson(20, 1)
+        clients = pm.Poisson('C', mu=20)
         order_pay = pm.Normal('op', mu=1, sigma=0.5)
-        prepare = pm.Exponential('pC', 1 / alfa)
-        trace = pm.sample(trafic[0], chains=1)
+        prepare = pm.Exponential('p', 1 / alfa)
+        trace = pm.sample(1000)
+        time = pm.Normal('T', order_pay + prepare)
 
         dictionary = {
+                'clients': trace['C'].tolist(),
                 'order_pay': trace['op'].tolist(),
-                'prepare': trace['p'].tolist()
+                'prepare': trace['p'].tolist(),
+                'time': trace['T'].tolist()
         }
         df = pd.DataFrame(dictionary)
-
-def clients(nr_clients):
-    for client in range(nr_clients):
-        alfa = random.randint(0, 60)
-        FastFoodProbability(alfa)
+        print(df[(df['time'] <= 15)].shape[0] / df.shape[0])
+        #timpul de servire mai mic de 15 minute
+        total_time = 0
+        number_of_clients = df.shape[0]
+        for each_time in number_of_clients:
+            total_time = total_time + df.at[each_time,'time']
+        print(total_time/number_of_clients)
