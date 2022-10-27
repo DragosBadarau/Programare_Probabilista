@@ -32,12 +32,12 @@ def simplified_poker():
                                 [1, 0.75, 0.55, 0.35, 0.05, 1, 0.75, 0.4, 0.1, 0],
                                 [0, 0.05, 0.05, 0.05, 0.05, 0, 0.25, 0.6, 0.9, 1]],
                         evidence=['Card2', 'Round1'], evidence_card=[5,
-                                                                     3])  # 3 liste de posibilitati pentru jucatorul 2 : asteapta, pariaza, iese;
+                                                                     2])  # 3 liste de posibilitati pentru jucatorul 2 : asteapta, pariaza, iese;
     # primele 5 valori din 10 sunt pentru runda 1 asteapta, urmatoarele 5 sunt pentru runda 1 pariaza
     print(CPD_R2)
     CPD_R3 = TabularCPD(variable='Round3', variable_card=2, values=[[1, 0.7, 0.5, 0.2, 0], [0, 0.3, 0.5, 0.8, 1]],
                         evidence=['Card1', 'Round2', 'Round1'],
-                        evidence_card=[5, 3])
+                        evidence_card=[5, 2, 3])
     # jucatorul 2 pariaza iar jucatorul 1 a asteptat =>
     # prima lista : jucatorul 1 pariaza
     # a2 a lista : jucatorul 1 iese
